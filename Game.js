@@ -7,11 +7,11 @@ NinjaGame.Game = function(game) {
 NinjaGame.Game.prototype = {
 	init: function() {
     	//Called as soon as we enter this state
+        this.arrow = this.input.keyboard.createCursorKeys();
     },
 
     preload: function() {
     	//Assets to be loaded before create() is called
-        
     	
     },
 
@@ -86,7 +86,7 @@ NinjaGame.Game.prototype = {
             NinjaGame.globals.player.setAngle(0);
         }
     },
-    
+
     hitWall: function() {
         //console.log("Hit wall function called.")
         return true

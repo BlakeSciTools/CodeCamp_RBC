@@ -50,6 +50,14 @@ NinjaGame.globals = {
 		},
 	},
 
+    labbies: {
+        baseSpeed: 150,
+        sprite: null,
+        sprint: false,
+        imageDirectory: "Assets/Sprites/Blue/characterBlue (1).png",
+        spriteName: "player",
+    },
+
 
 };
 
@@ -72,8 +80,6 @@ NinjaGame.Boot.prototype = {
         this.load.image('tileset','Assets/Maps/sampleImage.png');
         this.load.image(NinjaGame.globals.player.spriteName, NinjaGame.globals.player.imageDirectory);
         this.load.image("labby", "Assets/Sprites/Red/characterRed (1).png");
-        this.arrow = this.input.keyboard.createCursorKeys();
-    	
     },
 
     create: function() {
