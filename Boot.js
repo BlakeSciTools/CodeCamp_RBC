@@ -13,7 +13,7 @@ NinjaGame.globals = {
 		y: 200,
 		sprite: null,
 		sprint: false,
-		imageDirectory: "Assets/free/PNG/Retina/tankBody_red.png",
+		imageDirectory: "Assets/Sprites/Blue/characterBlue (1).png",
 		spriteName: "player",
 		getSpeed: function() {
 			if (this.sprint) {
@@ -73,7 +73,8 @@ NinjaGame.Boot.prototype = {
 
     	this.load.tilemap('map', "Assets/Maps/tmpMap..csv");
     	this.load.image('tileset','Assets/Maps/sampleImage.png');
-    	this.load.image(NinjaGame.globals.player.spriteName, NinjaGame.globals.player.imageDirectory);
+		this.load.image(NinjaGame.globals.player.spriteName, NinjaGame.globals.player.imageDirectory);
+		this.load.image("labby", "Assets/Sprites/Red/characterRed (1).png")
     	this.arrow = this.input.keyboard.createCursorKeys();
     },
 
@@ -91,9 +92,8 @@ NinjaGame.Boot.prototype = {
     	NinjaGame.globals.player.sprite = this.add.sprite(NinjaGame.globals.player.x, NinjaGame.globals.player.y, NinjaGame.globals.player.spriteName);
     	NinjaGame.globals.player.sprite.anchor.setTo(.5, .5);
     	
-    	this.tank = this.add.sprite(400, 200, NinjaGame.globals.player.spriteName);
+    	this.tank = this.add.sprite(400, 200, "labby");
     	
-
     	this.physics.enable(NinjaGame.globals.player.sprite, Phaser.Physics.ARCADE);
     	this.physics.enable(this.tank, Phaser.Physics.ARCADE);
     	NinjaGame.globals.player.sprite.body.velocity.setTo(NinjaGame.globals.player.x, NinjaGame.globals.player.y);
@@ -120,31 +120,31 @@ NinjaGame.Boot.prototype = {
 		if (this.arrow.up.isDown & this.arrow.left.isDown) {
             NinjaGame.globals.player.moveLeft();
             NinjaGame.globals.player.moveUp();
-            NinjaGame.globals.player.setAngle(315);
+            NinjaGame.globals.player.setAngle(225);
         } else if (this.arrow.up.isDown & this.arrow.right.isDown) {
             NinjaGame.globals.player.moveUp();
             NinjaGame.globals.player.moveRight();
-            NinjaGame.globals.player.setAngle(45);
+            NinjaGame.globals.player.setAngle(315);
         } else if (this.arrow.down.isDown & this.arrow.left.isDown) {
             NinjaGame.globals.player.moveDown();
             NinjaGame.globals.player.moveLeft();
-            NinjaGame.globals.player.setAngle(225);
+            NinjaGame.globals.player.setAngle(135);
         } else if (this.arrow.down.isDown & this.arrow.right.isDown) {
             NinjaGame.globals.player.moveDown();
             NinjaGame.globals.player.moveRight();
-            NinjaGame.globals.player.setAngle(135);
+            NinjaGame.globals.player.setAngle(45);
         } else if (this.arrow.up.isDown) {
             NinjaGame.globals.player.moveUp();
-            NinjaGame.globals.player.setAngle(0);
+            NinjaGame.globals.player.setAngle(270);
         } else if (this.arrow.down.isDown) {
             NinjaGame.globals.player.moveDown();
-            NinjaGame.globals.player.setAngle(180);
+            NinjaGame.globals.player.setAngle(90);
         } else if (this.arrow.left.isDown) {
             NinjaGame.globals.player.moveLeft();
-            NinjaGame.globals.player.setAngle(270);
+            NinjaGame.globals.player.setAngle(180);
         } else if (this.arrow.right.isDown) {
             NinjaGame.globals.player.moveRight();
-            NinjaGame.globals.player.setAngle(90);
+            NinjaGame.globals.player.setAngle(0);
         }
 
     },
