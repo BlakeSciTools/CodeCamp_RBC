@@ -17,7 +17,6 @@ NinjaGame.globals = {
 		moveUp: function() {
 			this.y -= this.speed;
 			this.sprite.centerY = this.y;
-			
 		},
 		moveDown: function() {
 			this.y += this.speed;
@@ -33,12 +32,12 @@ NinjaGame.globals = {
 		},
 		setAngle: function(value) {
 			this.sprite.angle = value;
-		}
+		},
 		regenerate: function() {
 			if (this.energy + this.energyRR < this.energyCap) {
 				this.energy += this.energyRR;
 			};
-		}
+		},
 	},
 };
 
