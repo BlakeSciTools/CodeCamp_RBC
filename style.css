@@ -1,0 +1,19 @@
+
+/*
+	Center the game screens div.
+*/
+#gameScreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+
+/*
+	Give a pretty background gradient for Cruz.
+*/
+html {
+	background: linear-gradient(to right, #2100FE, #3DE8CC);
+}
