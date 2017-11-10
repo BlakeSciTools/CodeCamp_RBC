@@ -82,7 +82,7 @@ NinjaGame.Boot.prototype = {
     	//Adding sprites, sounds, etc...
     	this.physics.startSystem(Phaser.Physics.ARCADE);
 
-    	this.stage.backgroundColor = '#A9009C';
+    	this.stage.backgroundColor = '#6574A6';
 
     	this.map = this.add.tilemap('map', 32, 32);
     	this.map.addTilesetImage('tileset');
