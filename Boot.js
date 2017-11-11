@@ -49,12 +49,14 @@ NinjaGame.globals = {
 		},
 	},
 
-    labbies: {
+    labby: {
         baseSpeed: 150,
-        sprite: null,
-        sprint: false,
-        imageDirectory: "Assets/Sprites/Blue/characterBlue (1).png",
-        spriteName: "player",
+        labbyGroup: null,
+        labbySprites: [],
+        xs: [200,300,400,500,600],
+        ys: [100,200,300,400,500],
+        imageDirectory: ["Assets/Sprites/Red/characterRed (1).png"],
+        spriteName: "labby",
     },
 
 
