@@ -7,7 +7,7 @@ NinjaGame.Menu.prototype = {
 
     preload: function() {
     	//Assets to be loaded before create() is called
-    	
+
     },
 
     create: function() {
