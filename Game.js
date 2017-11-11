@@ -22,10 +22,13 @@ NinjaGame.Game.prototype = {
         this.energyBar.x = this.game.width/2 - this.energyBar.width/2;
         this.energyBar.defaultWidth = this.energyBar.width;
 
-        this.map = this.add.tilemap('map', 8, 8);
-        this.map.addTilesetImage('tileset');
-        this.layer = this.map.createLayer(0);
-        this.layer.resizeWorld()
+        this.MainMap = this.add.tilemap('MainMap', 8, 8);
+        this.MainMap.addTilesetImage('tileset');
+        this.CollisionMap = this.add.tilemap('CollisionMap', 8, 8);
+        this.CollisionMap.addTilesetImage('tileset');
+        this.layer = this.MainMap.createLayer(0);
+        this.layer2 = this.CollisionMap.createLayer(1);
+        this.layer.resizeWorld();
 
         NinjaGame.globals.player.sprite = this.add.sprite(NinjaGame.globals.player.x, NinjaGame.globals.player.y, NinjaGame.globals.player.spriteName);
         NinjaGame.globals.player.sprite.anchor.setTo(.5, .5);
@@ -48,9 +51,9 @@ NinjaGame.Game.prototype = {
         this.tank.body.velocity.x = 0.01;
         this.tank.body.velocity.y = 0.01;
 
-        this.map.setCollisionBetween(0, 2);
-        this.physics.arcade.collide(this.tank, this.layer)
-        if (this.physics.arcade.collide(NinjaGame.globals.player.sprite, this.layer)) {
+        this.CollisionMap.setCollisionBetween(235, 260);
+        this.physics.arcade.collide(this.tank, this.layer2)
+        if (this.physics.arcade.collide(NinjaGame.globals.player.sprite, this.layer2)) {
             console.log("Hit wall");
         };
         if (this.physics.arcade.collide(NinjaGame.globals.player.sprite, this.tank)) {
