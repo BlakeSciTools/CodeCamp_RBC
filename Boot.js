@@ -63,8 +63,8 @@ NinjaGame.globals = {
 // Create a game state 'Boot' on NinjaGame.
 NinjaGame.Boot = function(game) {
 	// Local globals can go here?
-	
-}; 
+
+};
 
 
 // Create a prototype for 'Boot' that it will inherit from.
@@ -81,15 +81,15 @@ NinjaGame.Boot.prototype = {
         this.load.image("labby", "Assets/Sprites/Red/characterRed (1).png");
     },
 
-    create: function() {		
+    create: function() {
     	//Adding sprites, sounds, etc...
         this.state.start('Game');
-    	
+
     },
 
     update: function() {
     	//Game logic, collision, movement, etc...
     },
 
-    
+
 };
