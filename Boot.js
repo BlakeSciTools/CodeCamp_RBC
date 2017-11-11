@@ -4,11 +4,14 @@ var NinjaGame = {};
 // Create a list of globals that will persist through ALL states.
 NinjaGame.globals = {
 	// globals
+
+
 	player: {
 		energy: 100,
 		energyCap: 100,
-		energyRR: 0.5,
+		energyRR: 0.02,
 		baseSpeed: 150,
+        m: 1,
 		x: 300,
 		y: 200,
 		sprite: null,
@@ -18,8 +21,8 @@ NinjaGame.globals = {
 		getSpeed: function() {
 			if (this.sprint) {
 				if (this.energy >= 1) {
-					this.energy -= 1;
-					return this.baseSpeed * 2
+					this.energy -= .02;
+					return this.baseSpeed * 1.4;
 				} else {
 					return this.baseSpeed;
 				}
@@ -28,16 +31,16 @@ NinjaGame.globals = {
 			}
 		},
 		moveUp: function() {
-			this.sprite.body.velocity.y = -1 * this.getSpeed();
+			this.sprite.body.velocity.y = -1 * this.getSpeed() * this.m;
 		},
 		moveDown: function() {
-			this.sprite.body.velocity.y = this.getSpeed();
+			this.sprite.body.velocity.y = this.getSpeed() * this.m;
 		},
 		moveRight: function() {
-			this.sprite.body.velocity.x = this.getSpeed();
+			this.sprite.body.velocity.x = this.getSpeed() * this.m;
 		},
 		moveLeft: function() {
-			this.sprite.body.velocity.x = -1 * this.getSpeed();
+			this.sprite.body.velocity.x = -1 * this.getSpeed() * this.m;
 		},
 		setAngle: function(value) {
 			this.sprite.angle = value;
@@ -50,7 +53,7 @@ NinjaGame.globals = {
 	},
 
     labby: {
-        baseSpeed: 150,
+        baseSpeed: 80,
         labbyGroup: null,
         labbySprites: [],
         xs: [200,300,400,500,600],
@@ -65,7 +68,6 @@ NinjaGame.globals = {
 // Create a game state 'Boot' on NinjaGame.
 NinjaGame.Boot = function(game) {
 	// Local globals can go here?
-
 };
 
 
@@ -73,6 +75,7 @@ NinjaGame.Boot = function(game) {
 NinjaGame.Boot.prototype = {
 	init: function() {
     	//Called as soon as we enter this state
+        this.stage.disableVisibilityChange = true;
     },
 
     preload: function() {
@@ -81,7 +84,10 @@ NinjaGame.Boot.prototype = {
         this.load.tilemap('CollisionMap', "Assets/Maps/newMapIdea/collisionMap.csv");
         this.load.image('tileset','Assets/Maps/newMapIdea/finalPicture.png');
         this.load.image(NinjaGame.globals.player.spriteName, NinjaGame.globals.player.imageDirectory);
-        this.load.image("labby", "Assets/Sprites/Red/characterRed (1).png");
+        for (i=0; i < 12; i++) {
+            this.load.image(i.toString(), "Assets/Sprites/Red/characterRed (1).png");
+        }
+        
     },
 
     create: function() {
