@@ -1,27 +1,28 @@
 NinjaGame.Game = function(game) {
-    this.map = null;
-    this.tank = null;
-    this.layer = null;
 };
 
 NinjaGame.Game.prototype = {
 	init: function() {
     	//Called as soon as we enter this state
         this.arrow = this.input.keyboard.createCursorKeys();
+		this.space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
 
     preload: function() {
-    	//Assets to be loaded before create() is called
-    	
+        //Assets to be loaded before create() is called
+        this.load.image("energy", "Assets/Sprites/preload.png");
     },
 
     create: function() {
-    	//Adding sprites, sounds, etc...
+        //Adding sprites, sounds, etc...
+
         this.physics.startSystem(Phaser.Physics.ARCADE);
-
         this.stage.backgroundColor = '#6574A6';
-
-        this.map = this.add.tilemap('map', 32, 32);
+        this.energyBar = this.add.sprite(0, 20, "energy");
+        this.energyBar.x = this.game.width/2 - this.energyBar.width/2;
+        this.energyBar.defaultWidth = this.energyBar.width;
+        
+        this.map = this.add.tilemap('map', 4, 4);
         this.map.addTilesetImage('tileset');
         this.layer = this.map.createLayer(0);
         this.layer.resizeWorld()
@@ -39,14 +40,14 @@ NinjaGame.Game.prototype = {
 
     update: function() {
     	//Game logic, collision, movement, etc...
+        this.energyBar.width = this.energyBar.defaultWidth * NinjaGame.globals.player.energy / NinjaGame.globals.player.energyCap;
 
         NinjaGame.globals.player.sprite.body.velocity.x = 0;
         NinjaGame.globals.player.sprite.body.velocity.y = 0;
 
         this.tank.body.velocity.x = 0.01;
         this.tank.body.velocity.y = 0.01;
-
-        
+    
         this.map.setCollisionBetween(0, 2);
         this.physics.arcade.collide(this.tank, this.layer)
         if (this.physics.arcade.collide(NinjaGame.globals.player.sprite, this.layer)) {
@@ -55,7 +56,11 @@ NinjaGame.Game.prototype = {
         if (this.physics.arcade.collide(NinjaGame.globals.player.sprite, this.tank)) {
             console.log("you hit a tank.")
         }
-
+        if (this.space.isDown) {
+            NinjaGame.globals.player.sprint = true;
+        } else {
+            NinjaGame.globals.player.regenerate();
+        }
         if (this.arrow.up.isDown & this.arrow.left.isDown) {
             NinjaGame.globals.player.moveLeft();
             NinjaGame.globals.player.moveUp();
@@ -83,8 +88,10 @@ NinjaGame.Game.prototype = {
             NinjaGame.globals.player.setAngle(180);
         } else if (this.arrow.right.isDown) {
             NinjaGame.globals.player.moveRight();
-            NinjaGame.globals.player.setAngle(0);
+            NinjaGame.globals.player.setAngle(0); 
         }
+
+        NinjaGame.globals.player.sprint = false;
     },
 
     hitWall: function() {

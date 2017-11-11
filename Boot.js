@@ -7,7 +7,7 @@ NinjaGame.globals = {
 	player: {
 		energy: 100,
 		energyCap: 100,
-		energyRR: 5,
+		energyRR: 0.5,
 		baseSpeed: 150,
 		x: 300,
 		y: 200,
@@ -17,11 +17,10 @@ NinjaGame.globals = {
 		spriteName: "player",
 		getSpeed: function() {
 			if (this.sprint) {
-				if (this.energy >= 5) {
-					energy -= 5;
+				if (this.energy >= 1) {
+					this.energy -= 1;
 					return this.baseSpeed * 2
 				} else {
-					this.sprint = false;
 					return this.baseSpeed;
 				}
 			} else {
@@ -77,12 +76,12 @@ NinjaGame.Boot.prototype = {
     preload: function() {
     	//Assets to be loaded before create() is called
         this.load.tilemap('map', "Assets/Maps/tmpMap..csv");
-        this.load.image('tileset','Assets/Maps/sampleImage.png');
+        this.load.image('tileset','Assets/Maps/topDownShooter/Tilesheet/tilesheet_complete.png');
         this.load.image(NinjaGame.globals.player.spriteName, NinjaGame.globals.player.imageDirectory);
         this.load.image("labby", "Assets/Sprites/Red/characterRed (1).png");
     },
 
-    create: function() {
+    create: function() {		
     	//Adding sprites, sounds, etc...
         this.state.start('Game');
     	
