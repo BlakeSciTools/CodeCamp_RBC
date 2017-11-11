@@ -21,17 +21,17 @@ NinjaGame.Game.prototype = {
         this.energyBar = this.add.sprite(0, 20, "energy");
         this.energyBar.x = this.game.width/2 - this.energyBar.width/2;
         this.energyBar.defaultWidth = this.energyBar.width;
-        
-        this.map = this.add.tilemap('map', 4, 4);
+
+        this.map = this.add.tilemap('map', 8, 8);
         this.map.addTilesetImage('tileset');
         this.layer = this.map.createLayer(0);
         this.layer.resizeWorld()
 
         NinjaGame.globals.player.sprite = this.add.sprite(NinjaGame.globals.player.x, NinjaGame.globals.player.y, NinjaGame.globals.player.spriteName);
         NinjaGame.globals.player.sprite.anchor.setTo(.5, .5);
-        
+
         this.tank = this.add.sprite(400, 200, "labby");
-        
+
         this.physics.enable(NinjaGame.globals.player.sprite, Phaser.Physics.ARCADE);
         this.physics.enable(this.tank, Phaser.Physics.ARCADE);
         NinjaGame.globals.player.sprite.body.velocity.setTo(NinjaGame.globals.player.x, NinjaGame.globals.player.y);
@@ -47,7 +47,7 @@ NinjaGame.Game.prototype = {
 
         this.tank.body.velocity.x = 0.01;
         this.tank.body.velocity.y = 0.01;
-    
+
         this.map.setCollisionBetween(0, 2);
         this.physics.arcade.collide(this.tank, this.layer)
         if (this.physics.arcade.collide(NinjaGame.globals.player.sprite, this.layer)) {
@@ -88,7 +88,7 @@ NinjaGame.Game.prototype = {
             NinjaGame.globals.player.setAngle(180);
         } else if (this.arrow.right.isDown) {
             NinjaGame.globals.player.moveRight();
-            NinjaGame.globals.player.setAngle(0); 
+            NinjaGame.globals.player.setAngle(0);
         }
 
         NinjaGame.globals.player.sprint = false;

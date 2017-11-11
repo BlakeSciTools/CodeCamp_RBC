@@ -75,8 +75,8 @@ NinjaGame.Boot.prototype = {
 
     preload: function() {
     	//Assets to be loaded before create() is called
-        this.load.tilemap('map', "Assets/Maps/tmpMap..csv");
-        this.load.image('tileset','Assets/Maps/topDownShooter/Tilesheet/tilesheet_complete.png');
+        this.load.tilemap('map', "Assets/Maps/newMapIdea/tmpMap.csv");
+        this.load.image('tileset','Assets/Maps/newMapIdea/finalPicture.png');
         this.load.image(NinjaGame.globals.player.spriteName, NinjaGame.globals.player.imageDirectory);
         this.load.image("labby", "Assets/Sprites/Red/characterRed (1).png");
     },
